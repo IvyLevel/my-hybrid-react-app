@@ -6,27 +6,6 @@ import { Upload, FileText, CheckCircle, Clock } from 'lucide-react';
 const PreFillingFlow = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(1); // Start at Step 1
   const [uploading, setUploading] = useState(false);
-  const [studentData, setStudentData] = useState({
-    name: '',
-    school: '',
-    targetSchools: '',
-  });
-
-  // Handle input changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setStudentData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  // Store student data in localStorage when moving to the next step
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    localStorage.setItem('studentData', JSON.stringify(studentData));
-    onComplete();
-  };
 
   const renderStep = () => {
     switch (currentStep) {
