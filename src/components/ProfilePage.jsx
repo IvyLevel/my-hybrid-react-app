@@ -1,5 +1,3 @@
-// src/components/ProfilePage.jsx
-
 import React from 'react';
 
 const ProfilePage = () => {
@@ -23,8 +21,7 @@ const ProfilePage = () => {
           <div>
             <p className="text-xl font-medium">Name: {accountData.firstName} {accountData.lastName}</p>
             <p className="text-lg text-gray-600">Email: {accountData.auth.email}</p>
-            <p className="text-lg text-gray-600">School: {accountData.customFields['school-name']}</p>
-            <p className="text-lg text-gray-600">Target Schools: {accountData.customFields['target-schools']}</p>
+            {/* Add more user data as needed */}
           </div>
         ) : (
           <p>No profile data available.</p>

@@ -1,5 +1,3 @@
-// src/components/PreFillingFlow.jsx
-
 import React, { useState } from 'react';
 import { Upload, FileText, CheckCircle, Clock } from 'lucide-react';
 
