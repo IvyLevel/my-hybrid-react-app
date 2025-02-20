@@ -1,5 +1,3 @@
-// src/App.jsx
-
 import React, { useState, useEffect } from "react";
 import memberstackDOM from "@memberstack/dom";
 import PreFillingFlow from "./components/PreFillingFlow";  // Import PreFillingFlow component
@@ -11,15 +9,15 @@ const memberstack = memberstackDOM.init({
 });
 
 function App() {
-  const [isPrefillComplete, setIsPrefillComplete] = useState(false);  // Track pre-fill completion
+  const [isPrefillComplete, setIsPrefillComplete] = useState(false); // Track pre-fill completion
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     // Check if the user is already logged in from localStorage
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
-      setUser(storedUser);  // Set user data from localStorage if it exists
-      window.location.href = "/profile";  // Redirect to profile page if already logged in
+      setUser(storedUser); // Set user data from localStorage if it exists
+      window.location.href = "https://gigzbee.com/student-gated-content/student-home"; // Redirect to profile page if already logged in
     }
   }, []);
 
@@ -38,7 +36,8 @@ function App() {
         setUser(data);  // Set user data after successful login
         localStorage.setItem("user", JSON.stringify(data));  // Save user data to localStorage
         console.log("User logged in:", data);
-        window.location.href = "/profile";  // Redirect to profile page after login
+        // Explicit redirection to the correct page
+        window.location.href = "https://gigzbee.com/student-gated-content/student-home";  // Redirect to profile page after login
       }
     });
   };
@@ -53,7 +52,8 @@ function App() {
         setUser(data);  // Set user data after successful sign-up
         localStorage.setItem("user", JSON.stringify(data));  // Save user data to localStorage
         console.log("User signed up:", data);
-        window.location.href = "/profile";  // Redirect to profile page after sign-up
+        // Explicit redirection to the correct page
+        window.location.href = "https://gigzbee.com/student-gated-content/student-home";  // Redirect to profile page after sign-up
       }
     });
   };
@@ -64,7 +64,7 @@ function App() {
     setUser(null);  // Reset user state after logout
     localStorage.removeItem("user");  // Remove user data from localStorage
     console.log("User logged out");
-    window.location.href = "/";  // Redirect to home page after logout
+    window.location.href = "https://gigzbee.com";  // Redirect to home page after logout
   };
 
   return (
