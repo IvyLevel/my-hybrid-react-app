@@ -1,22 +1,25 @@
 // src/App.jsx
 
-import React, { useState, useEffect } from "react";
-import memberstackDOM from "@memberstack/dom";
-import PreFillingFlow from "./components/PreFillingFlow";  // Import PreFillingFlow component
+import React, { useState, useEffect } from 'react';
+import PreFillingFlow from './components/PreFillingFlow';  // Import PreFillingFlow component
 
-// Initialize Memberstack - Make sure your public key is correct
-const memberstack = memberstackDOM.init({
-  publicKey: "pk_9fa37c39b87965da005e", // Replace with your actual public key
-});
+// Initialize Memberstack (no login/signup or redirect logic in App.jsx anymore)
+const memberstack = window.$memberstackDom;
 
 function App() {
   const [isPrefillComplete, setIsPrefillComplete] = useState(false);  // Track pre-fill completion
 
+  useEffect(() => {
+    // Check if the user is already logged in from localStorage (if present)
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      window.location.href = "/student-gated-content/student-home";  // Redirect to Webflow profile page if already logged in
+    }
+  }, []);
+
   // Function to handle pre-fill completion (after pre-fill form is completed)
   const handlePrefillComplete = () => {
     setIsPrefillComplete(true);
-    // Redirect to the Webflow login/signup page
-    window.location.href = "https://gigzbee.com/student-signup-login"; // Change to your Webflow login/signup page URL
   };
 
   return (
@@ -26,10 +29,8 @@ function App() {
         {!isPrefillComplete ? (
           <PreFillingFlow onComplete={handlePrefillComplete} />
         ) : (
-          // After pre-fill is complete, this section will redirect to Webflow for login/signup.
-          <div>
-            <h2 className="text-2xl font-bold">Redirecting to Login/Signup...</h2>
-          </div>
+          // After pre-fill completion, no further logic is needed here
+          <p>Redirecting to your Ivy+ Score, Game Plan, and Execution...</p> // A placeholder message
         )}
       </div>
     </div>
