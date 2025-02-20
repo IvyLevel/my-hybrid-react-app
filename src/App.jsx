@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
-import memberstackDOM from "@memberstack/dom";
-import PreFillingFlow from "./components/PreFillingFlow"; // Import PreFillingFlow component
+// src/App.jsx
 
-// Initialize Memberstack with your app ID
+import React, { useState, useEffect } from 'react';
+import memberstackDOM from '@memberstack/dom';
+import PreFillingFlow from './components/PreFillingFlow';  // Import PreFillingFlow component
+
+// Initialize Memberstack - Make sure your public key is correct
 const memberstack = memberstackDOM.init({
-  publicKey: "pk_clu6nsjd7000o0tr8ad815i9o", // Use your Memberstack public key
+  publicKey: "pk_9fa37c39b87965da005e", // Replace with your actual public key
 });
 
 function App() {
@@ -16,7 +18,7 @@ function App() {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
       setUser(storedUser);  // Set user data from localStorage if it exists
-      window.location.href = "/profile";  // Redirect to profile page if already logged in
+      window.location.href = "/student-gated-content/student-home";  // Redirect to Webflow student-home page if already logged in
     }
   }, []);
 
@@ -35,7 +37,7 @@ function App() {
         setUser(data);  // Set user data after successful login
         localStorage.setItem("user", JSON.stringify(data));  // Save user data to localStorage
         console.log("User logged in:", data);
-        window.location.href = "/profile";  // Redirect to profile page after login
+        window.location.href = "/student-gated-content/student-home";  // Redirect to Webflow student-home page after login
       }
     });
   };
@@ -50,7 +52,7 @@ function App() {
         setUser(data);  // Set user data after successful sign-up
         localStorage.setItem("user", JSON.stringify(data));  // Save user data to localStorage
         console.log("User signed up:", data);
-        window.location.href = "/profile";  // Redirect to profile page after sign-up
+        window.location.href = "/student-gated-content/student-home";  // Redirect to Webflow student-home page after sign-up
       }
     });
   };
@@ -81,7 +83,6 @@ function App() {
               >
                 Logout
               </button>
-              {/* Profile Page should be rendered by Webflow */}
             </div>
           ) : (
             <div>
