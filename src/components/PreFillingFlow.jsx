@@ -1,8 +1,10 @@
+// src/components/PreFillingFlow.jsx
+
 import React, { useState } from 'react';
 import { Upload, FileText, CheckCircle, Clock } from 'lucide-react';
 
 const PreFillingFlow = ({ onComplete }) => {
-  const [currentStep, setCurrentStep] = useState(1); // Start at Step 1
+  const [currentStep, setCurrentStep] = useState(1);
   const [uploading, setUploading] = useState(false);
 
   const renderStep = () => {
@@ -30,9 +32,7 @@ const PreFillingFlow = ({ onComplete }) => {
               </div>
             </div>
             <button
-              onClick={() => {
-                setCurrentStep(2); // Move to Step 2
-              }}
+              onClick={() => setCurrentStep(2)}
               className="mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
             >
               Let's Get Started
@@ -69,7 +69,7 @@ const PreFillingFlow = ({ onComplete }) => {
                   setUploading(true);
                   setTimeout(() => {
                     setUploading(false);
-                    setCurrentStep(3);  // Go to Step 3
+                    setCurrentStep(3);
                   }, 2000);
                 }}
                 className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -106,12 +106,12 @@ const PreFillingFlow = ({ onComplete }) => {
               <div className="text-center text-gray-600">
                 <button 
                   onClick={() => {
-                    setCurrentStep(4);  // Go to Step 4 (Review)
-                    onComplete(); // Notify parent component that pre-fill is complete
+                    // Redirect user to Webflow's sign-up/login page
+                    window.location.href = "https://gigzbee.com/student-signup-login";
                   }}
                   className="mt-4 px-6 py-2 text-blue-600 hover:text-blue-700"
                 >
-                  Continue →
+                  Continue to Sign Up/Login →
                 </button>
               </div>
             </div>
