@@ -2,15 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
 
     <!-- Add Memberstack CDN Script -->
-    <!-- Add Memberstack CDN Script -->
-    <script src="https://cdn.memberstack.io/memberstack.js?use=react" data-memberstack-app="pk_sb_6422dc8c01ab1634cd45" type="text/javascript"></script>
-  </head>
+    <script>
+      // Memberstack config for CORS and cookie management
+      const memberstackConfig = {
+        useCookies: true,
+        setCookieOnRootDomain: true,
+      };
+    </script>
 
+    <script
+      src="https://cdn.memberstack.io/memberstack.js?use=react"
+      data-memberstack-app="pk_9fa37c39b87965da005e"
+      type="text/javascript">
+    </script>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>

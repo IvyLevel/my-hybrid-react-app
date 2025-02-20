@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@memberstack/dom": "^1.9.2",
+    "@memberstack/dom": "^1.9.34",
     "@memberstack/react": "^2.0.30",
     "axios": "^1.7.9",
     "lucide-react": "^0.475.0",
