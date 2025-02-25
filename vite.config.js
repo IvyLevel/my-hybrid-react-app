@@ -8,8 +8,8 @@ export default defineConfig({
     react(),
     viteMockServe({
       mockPath: 'src/mock',
-      localEnabled: true, // Enable mocks in local development
-      prodEnabled: true,  // Enable mocks in production (for testing purposes)
+      localEnabled: true,
+      prodEnabled: true, // Enable mocks in production for testing
     }),
   ],
 });
