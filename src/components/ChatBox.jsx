@@ -10,7 +10,7 @@ export default function ChatBox({ onNewMessage }) {
   const sendMessage = async (message) => {
     try {
       const { data } = await axios.post('/api/converse', { message });
-      onNewMessage({ sender: 'aria', text: data.response });
+      onNewMessage({ sender: 'aria', text: data.data.response });
     } catch (error) {
       console.error('Error sending message:', error);
     }
