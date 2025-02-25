@@ -1,4 +1,3 @@
-// src/components/Constellation.jsx
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 
@@ -9,7 +8,6 @@ function Star({ position, color }) {
   });
   return (
     <mesh ref={mesh} position={position}>
-      {/* Use sphereGeometry instead of sphereBufferGeometry */}
       <sphereGeometry args={[0.1, 16, 16]} />
       <meshStandardMaterial color={color} />
     </mesh>
@@ -18,7 +16,7 @@ function Star({ position, color }) {
 
 export default function Constellation({ stars }) {
   return (
-    <Canvas style={{ height: '300px', width: '100%' }}>
+    <Canvas style={{ height: '300px', width: '300px' }}>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       {stars.map((star, index) => (
