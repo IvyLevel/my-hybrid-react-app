@@ -6,7 +6,7 @@ import Constellation from './Constellation';
 function HybridOnboardingFlow({ onComplete }) {
   const [messages, setMessages] = useState([]);
   const [stars, setStars] = useState([
-    // Initialize with a default star if desired
+    // Initialize with a default star
     { position: [0, 0, 0], color: 'gold' },
   ]);
 
@@ -34,22 +34,24 @@ function HybridOnboardingFlow({ onComplete }) {
       <p className="text-center mb-8">
         I'm Aria, your personal college journey partner. Let's chat naturally and discover your unique path.
       </p>
-      {/* Flex container centered with mx-auto */}
-      <div className="flex flex-col md:flex-row gap-8 w-full max-w-4xl mx-auto">
-        <div className="flex-1">
-          <ChatBox onNewMessage={handleNewMessage} />
-          <div className="mt-4 bg-white p-4 rounded shadow max-h-60 overflow-y-auto text-center">
+      <div className="flex flex-col md:flex-row gap-8 w-full max-w-4xl mx-auto items-center justify-center">
+        {/* Left Column: ChatBox and Messages */}
+        <div className="flex-1 flex flex-col items-center justify-center">
+          <div className="w-full">
+            <ChatBox onNewMessage={handleNewMessage} />
+          </div>
+          <div className="mt-4 w-full bg-white p-4 rounded shadow max-h-60 overflow-y-auto text-center">
             {messages.map((msg, i) => (
               <div key={i} className="mb-2">
                 <span className="font-semibold">
                   {msg.sender === 'user' ? 'You' : 'Aria'}:
-                </span>{' '}
-                {msg.text}
+                </span> {msg.text}
               </div>
             ))}
           </div>
         </div>
-        <div className="flex-1">
+        {/* Right Column: Constellation */}
+        <div className="flex-1 flex items-center justify-center">
           <Constellation stars={stars} />
         </div>
       </div>
