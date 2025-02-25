@@ -6,14 +6,12 @@ import Constellation from './Constellation';
 function HybridOnboardingFlow({ onComplete }) {
   const [messages, setMessages] = useState([]);
   const [stars, setStars] = useState([
-    // Initialize with a default star
     { position: [0, 0, 0], color: 'gold' },
   ]);
 
   const handleNewMessage = (msg) => {
     setMessages((prev) => [...prev, msg]);
 
-    // Update the constellation based on keywords in the message
     const lowerText = msg.text.toLowerCase();
     if (lowerText.includes('film')) {
       setStars((prev) => [
@@ -34,8 +32,11 @@ function HybridOnboardingFlow({ onComplete }) {
       <p className="text-center mb-8">
         I'm Aria, your personal college journey partner. Let's chat naturally and discover your unique path.
       </p>
-      <div className="flex flex-col md:flex-row gap-8 w-full max-w-4xl mx-auto items-center justify-center">
-        {/* Left Column: ChatBox and Messages */}
+      <div
+        className="flex flex-col md:flex-row gap-8 w-full max-w-4xl mx-auto items-center justify-center"
+        style={{ marginLeft: 'auto', marginRight: 'auto', textAlign: 'center' }}
+      >
+        {/* Left Column */}
         <div className="flex-1 flex flex-col items-center justify-center">
           <div className="w-full max-w-md mx-auto">
             <ChatBox onNewMessage={handleNewMessage} />
@@ -43,12 +44,15 @@ function HybridOnboardingFlow({ onComplete }) {
           <div className="mt-4 w-full max-w-md mx-auto bg-white p-4 rounded shadow max-h-60 overflow-y-auto text-center">
             {messages.map((msg, i) => (
               <div key={i} className="mb-2">
-                <span className="font-semibold">{msg.sender === 'user' ? 'You' : 'Aria'}:</span> {msg.text}
+                <span className="font-semibold">
+                  {msg.sender === 'user' ? 'You' : 'Aria'}:
+                </span>{' '}
+                {msg.text}
               </div>
             ))}
           </div>
         </div>
-        {/* Right Column: Constellation */}
+        {/* Right Column */}
         <div className="flex-1 flex items-center justify-center">
           <Constellation stars={stars} />
         </div>
