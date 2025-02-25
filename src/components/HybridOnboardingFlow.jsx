@@ -6,7 +6,7 @@ import Constellation from './Constellation';
 function HybridOnboardingFlow({ onComplete }) {
   const [messages, setMessages] = useState([]);
   const [stars, setStars] = useState([
-    // Initialize with a default star
+    // Start with a default star
     { position: [0, 0, 0], color: 'gold' },
   ]);
 
@@ -29,45 +29,40 @@ function HybridOnboardingFlow({ onComplete }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-100 to-teal-100 flex flex-col items-center justify-center p-8">
-      <h1 className="text-3xl font-bold text-center mb-4">Welcome, Huda!</h1>
-      <p className="text-center mb-8">
-        I'm Aria, your personal college journey partner. Let's chat naturally and discover your unique path.
-      </p>
-      <div
-        className="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8"
-        style={{ margin: "0 auto", textAlign: "center" }}
-      >
-        {/* Left Column: ChatBox and Messages */}
-        <div style={{ margin: "0 auto", textAlign: "center" }}>
-          <div style={{ width: "100%", maxWidth: "600px", margin: "0 auto" }}>
-            <ChatBox onNewMessage={handleNewMessage} />
+    <div className="min-h-screen bg-gradient-to-r from-blue-100 to-teal-100 flex items-center justify-center p-8">
+      {/* Centered container with fixed max width */}
+      <div className="max-w-3xl w-full text-center">
+        <h1 className="text-3xl font-bold mb-4">Welcome, Huda!</h1>
+        <p className="mb-8">
+          I'm Aria, your personal college journey partner. Let's chat naturally and discover your unique path.
+        </p>
+        {/* Use grid layout to stack content responsively */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-center">
+          {/* Chat Section */}
+          <div className="flex flex-col items-center">
+            <div className="w-full max-w-lg mx-auto">
+              <ChatBox onNewMessage={handleNewMessage} />
+            </div>
+            <div className="mt-4 w-full max-w-lg mx-auto bg-white p-4 rounded shadow max-h-60 overflow-y-auto text-center">
+              {messages.map((msg, i) => (
+                <div key={i} className="mb-2">
+                  <span className="font-semibold">{msg.sender === 'user' ? 'You' : 'Aria'}:</span> {msg.text}
+                </div>
+              ))}
+            </div>
           </div>
-          <div
-            style={{ width: "100%", maxWidth: "600px", margin: "0 auto" }}
-            className="mt-4 bg-white p-4 rounded shadow max-h-60 overflow-y-auto"
-          >
-            {messages.map((msg, i) => (
-              <div key={i} style={{ textAlign: "center" }} className="mb-2">
-                <span className="font-semibold">
-                  {msg.sender === 'user' ? 'You' : 'Aria'}:
-                </span>{" "}
-                {msg.text}
-              </div>
-            ))}
+          {/* Constellation Section */}
+          <div className="flex items-center justify-center">
+            <Constellation stars={stars} />
           </div>
         </div>
-        {/* Right Column: Constellation */}
-        <div className="flex items-center justify-center">
-          <Constellation stars={stars} />
-        </div>
+        <button
+          onClick={onComplete}
+          className="mt-8 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+        >
+          Complete Onboarding
+        </button>
       </div>
-      <button
-        onClick={onComplete}
-        className="mt-8 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
-      >
-        Complete Onboarding
-      </button>
     </div>
   );
 }
