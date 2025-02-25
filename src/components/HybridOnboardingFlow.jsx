@@ -4,7 +4,6 @@ import ChatBox from './ChatBox';
 import Constellation from './Constellation';
 
 function HybridOnboardingFlow({ onComplete }) {
-  console.log("HybridOnboardingFlow component loaded - NEW VERSION");
   const [messages, setMessages] = useState([]);
   const [stars, setStars] = useState([
     // Initialize with a default star if desired
@@ -35,13 +34,17 @@ function HybridOnboardingFlow({ onComplete }) {
       <p className="text-center mb-8">
         I'm Aria, your personal college journey partner. Let's chat naturally and discover your unique path.
       </p>
-      <div className="flex flex-col md:flex-row gap-8 w-full max-w-4xl">
+      {/* Flex container centered with mx-auto */}
+      <div className="flex flex-col md:flex-row gap-8 w-full max-w-4xl mx-auto">
         <div className="flex-1">
           <ChatBox onNewMessage={handleNewMessage} />
-          <div className="mt-4 bg-white p-4 rounded shadow max-h-60 overflow-y-auto">
+          <div className="mt-4 bg-white p-4 rounded shadow max-h-60 overflow-y-auto text-center">
             {messages.map((msg, i) => (
-              <div key={i} className={`mb-2 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>
-                <span className="font-semibold">{msg.sender === 'user' ? 'You' : 'Aria'}:</span> {msg.text}
+              <div key={i} className="mb-2">
+                <span className="font-semibold">
+                  {msg.sender === 'user' ? 'You' : 'Aria'}:
+                </span>{' '}
+                {msg.text}
               </div>
             ))}
           </div>
