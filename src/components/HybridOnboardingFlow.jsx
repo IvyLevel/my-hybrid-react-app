@@ -4,6 +4,7 @@ import ChatBox from './ChatBox';
 import Constellation from './Constellation';
 
 function HybridOnboardingFlow({ onComplete }) {
+  console.log("HybridOnboardingFlow component loaded - NEW VERSION");
   const [messages, setMessages] = useState([]);
   const [stars, setStars] = useState([
     // Initialize with a default star if desired
