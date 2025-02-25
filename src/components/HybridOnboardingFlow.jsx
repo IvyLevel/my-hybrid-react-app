@@ -34,17 +34,25 @@ function HybridOnboardingFlow({ onComplete }) {
       <p className="text-center mb-8">
         I'm Aria, your personal college journey partner. Let's chat naturally and discover your unique path.
       </p>
-      {/* Use grid layout for the two columns */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto">
+      <div
+        className="w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8"
+        style={{ margin: "0 auto", textAlign: "center" }}
+      >
         {/* Left Column: ChatBox and Messages */}
-        <div className="flex flex-col items-center justify-center">
-          <div className="w-full max-w-md mx-auto">
+        <div style={{ margin: "0 auto", textAlign: "center" }}>
+          <div style={{ width: "100%", maxWidth: "600px", margin: "0 auto" }}>
             <ChatBox onNewMessage={handleNewMessage} />
           </div>
-          <div className="mt-4 w-full max-w-md mx-auto bg-white p-4 rounded shadow max-h-60 overflow-y-auto text-center">
+          <div
+            style={{ width: "100%", maxWidth: "600px", margin: "0 auto" }}
+            className="mt-4 bg-white p-4 rounded shadow max-h-60 overflow-y-auto"
+          >
             {messages.map((msg, i) => (
-              <div key={i} className="mb-2">
-                <span className="font-semibold">{msg.sender === 'user' ? 'You' : 'Aria'}:</span> {msg.text}
+              <div key={i} style={{ textAlign: "center" }} className="mb-2">
+                <span className="font-semibold">
+                  {msg.sender === 'user' ? 'You' : 'Aria'}:
+                </span>{" "}
+                {msg.text}
               </div>
             ))}
           </div>
